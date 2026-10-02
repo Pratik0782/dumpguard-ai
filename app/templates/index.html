@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DumpGuard Maharashtra</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+</head>
+<body>
+<header class="topbar"><div><div class="brand">🛡️ DumpGuard Maharashtra</div><div class="subtitle">Illegal Dumping Hotspot Prediction System</div></div></header>
+<main class="container">
+  <section class="hero">
+    <span class="badge">Python • Flask • Machine Learning • GIS</span>
+    <h1>Illegal Dumping Hotspot Prediction</h1>
+    <p>Select a village and location details to predict hotspot risk using the trained ML model.</p>
+  </section>
+
+  <section class="panel prediction-layout">
+    <div class="form-panel">
+      <div class="panel-head">
+        <div>
+          <h2>Village Prediction</h2>
+          <p>Choose the exact village and condition for prediction.</p>
+        </div>
+      </div>
+
+      <form id="predictionForm" class="form-grid">
+        <label>District
+          <select id="districtSelect" name="district" required></select>
+        </label>
+        <label>Taluka
+          <select id="talukaSelect" name="taluka" required></select>
+        </label>
+        <label>Village
+          <select id="villageSelect" name="village_name" required></select>
+        </label>
+        <label>Waste Type
+          <select name="waste_type">
+            <option>Plastic</option>
+            <option>Organic</option>
+            <option>Construction</option>
+            <option>Mixed</option>
+            <option>E-waste</option>
+            <option>Medical</option>
+          </select>
+        </label>
+        <label>Land Type
+          <select name="land_type">
+            <option>Open Plot</option>
+            <option>Roadside</option>
+            <option>Water Body</option>
+            <option>Agricultural</option>
+            <option>Industrial</option>
+            <option>Residential</option>
+          </select>
+        </label>
+        <label>Weather
+          <select name="weather">
+            <option>Clear</option>
+            <option>Cloudy</option>
+            <option>Rainy</option>
+            <option>Hot</option>
+            <option>Humid</option>
+          </select>
+        </label>
+        <label>Hour (0–23)
+          <input name="hour" type="number" min="0" max="23" value="20">
+        </label>
+        <label>Day of Week
+          <input name="day_of_week" value="Saturday">
+        </label>
+        <label>Weekend (0/1)
+          <input name="is_weekend" type="number" min="0" max="1" value="1">
+        </label>
+        <label>Previous Incidents (30d)
+          <input name="previous_incidents_30d" type="number" min="0" value="3">
+        </label>
+        <label>Complaints (30d)
+          <input name="complaints_30d" type="number" min="0" value="2">
+        </label>
+        <label>Distance to Main Road (km)
+          <input name="distance_to_main_road_km" type="number" min="0" step="0.01" value="0.15">
+        </label>
+        <label>Nearby Road Density (km)
+          <input name="nearby_road_density_km" type="number" min="0" step="0.01" value="0.5">
+        </label>
+        <label>Night (0/1)
+          <input name="night_indicator" type="number" min="0" max="1" value="1">
+        </label>
+
+        <div class="full">
+          <button class="primary" type="submit">🔍 Predict Hotspot Risk</button>
+        </div>
+      </form>
+
+      <div id="predictionResult" class="result hidden"></div>
+    </div>
+
+    <div class="map-panel">
+      <div class="panel-head">
+        <div>
+          <h2>Selected Village Location</h2>
+          <p id="selectedLocationInfo">Choose a village to see its location.</p>
+        </div>
+      </div>
+      <div id="map"></div>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>Academic-use:</strong> Your supplied CSV identifies the records as synthetic. The system demonstrates ML/GIS techniques and does not verify real-world dumping incidents.
+  </div>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body></html>

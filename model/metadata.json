@@ -1,0 +1,22 @@
+{
+  "features": [
+    "district",
+    "taluka",
+    "village_name",
+    "waste_type",
+    "land_type",
+    "weather",
+    "hour",
+    "day_of_week",
+    "is_weekend",
+    "previous_incidents_30d",
+    "complaints_30d",
+    "distance_to_main_road_km",
+    "nearby_road_density_km",
+    "night_indicator"
+  ],
+  "accuracy": 96.33,
+  "records": 6000,
+  "target": "hotspot_risk",
+  "note": "Synthetic dataset; academic/demo use."
+}
